@@ -5,7 +5,7 @@ using HutongGames.PlayMaker;
 namespace BepInExUtilities.Actions
 {
 
-    [ActionCategory("Al3ks1s Core")]
+    [ActionCategory("BepInEx Utilities")]
     [Tooltip("Int Bepin Ex configuration retrieval action")]
     internal class GetBepinExConfigInt : GetBepinExConfigValue<int>
     {

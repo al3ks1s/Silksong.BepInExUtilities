@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace BepInExUtilities.Actions
 {
-    [ActionCategory("Al3ks1s Core")]
-    [UnityEngine.Tooltip("Int Bepin Ex configuration retrieval action")]
+    [ActionCategory("BepInEx Utilities")]
+    [UnityEngine.Tooltip("Vector3 Bepin Ex configuration retrieval action")]
     internal class GetBepinExConfigVector3 : GetBepinExConfigValue<Vector3>
     {
 

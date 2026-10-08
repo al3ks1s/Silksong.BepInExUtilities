@@ -5,8 +5,8 @@ using HutongGames.PlayMaker;
 namespace BepInExUtilities.Actions
 {
 
-    [ActionCategory("Al3ks1s Core")]
-    [Tooltip("Int Bepin Ex configuration retrieval action")]
+    [ActionCategory("BepInEx Utilities")]
+    [Tooltip("Bool Bepin Ex configuration retrieval action")]
     internal class GetBepinExConfigBool : GetBepinExConfigValue<bool>
     {
 
