@@ -1,6 +1,4 @@
-﻿using BepInEx.Bootstrap;
-using BepInEx.Configuration;
-using HutongGames.PlayMaker;
+﻿using HutongGames.PlayMaker;
 
 namespace BepInExUtilities.Actions
 {
@@ -14,8 +12,7 @@ namespace BepInExUtilities.Actions
 
         public override void DoGetValue()
         {
-            if (config.TryGetEntry<float>(BepinExConfigSection, BepinExConfigKey, out ConfigEntry<float> value))
-                storeVariable.Value = value.Value;
+
         }
 
     }
