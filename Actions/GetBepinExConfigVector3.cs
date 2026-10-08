@@ -1,6 +1,4 @@
-﻿using BepInEx.Bootstrap;
-using BepInEx.Configuration;
-using HutongGames.PlayMaker;
+﻿using HutongGames.PlayMaker;
 using UnityEngine;
 
 namespace BepInExUtilities.Actions
@@ -14,8 +12,7 @@ namespace BepInExUtilities.Actions
 
         public override void DoGetValue()
         {
-            if (config.TryGetEntry<Vector3>(BepinExConfigSection, BepinExConfigKey, out ConfigEntry<Vector3> value))
-                storeVariable.Value = value.Value;
+
         }
 
     }

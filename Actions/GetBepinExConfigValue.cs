@@ -1,6 +1,4 @@
-﻿using BepInEx.Bootstrap;
-using BepInEx.Configuration;
-using HutongGames.PlayMaker;
+﻿using HutongGames.PlayMaker;
 
 namespace BepInExUtilities.Actions
 {
@@ -22,17 +20,9 @@ namespace BepInExUtilities.Actions
 
         public NamedVariable storeVariable;
 
-        protected ConfigFile config;
-
         public override void Awake()
         {
-            if (!Chainloader.PluginInfos.TryGetValue(BepinExPluginID, out var plugin))
-            {
-                base.Finish();
-                return;
-            }
-
-            config = plugin.Instance.Config;        
+    
         }
 
         public override void OnEnter()
@@ -43,8 +33,7 @@ namespace BepInExUtilities.Actions
 
         public virtual void DoGetValue()
         {
-            if (config.TryGetEntry<T>(BepinExConfigSection, BepinExConfigKey, out ConfigEntry<T> value))
-                storeVariable.RawValue = value.Value;
+
         }
 
     }
