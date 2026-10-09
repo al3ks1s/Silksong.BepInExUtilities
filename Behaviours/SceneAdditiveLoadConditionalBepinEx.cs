@@ -206,14 +206,14 @@ namespace BepInExUtilities.Behaviours
             { }
 
             [SerializeReference]
-            public BepinTest[] tests = Array.Empty<BepinTest>();
+            public List<BepinTest> tests = new();
 
             public bool IsFulfilled
             {
                 get
                 {
                     if (tests == null) return true;
-                    if (tests.Length == 0) return true;
+                    if (tests.Count == 0) return true;
 
                     return tests.All(t => t.IsFulfilled);
                 }
@@ -221,14 +221,14 @@ namespace BepInExUtilities.Behaviours
         }
 
         [SerializeField]
-        public BepinTestGroup[] tests;
+        public List<BepinTestGroup> tests = new();
 
         public bool IsFulfilled
         {
             get
             {
                 if (tests == null) return true;
-                if (tests.Length == 0) return true;
+                if (tests.Count == 0) return true;
 
                 return tests.Any(t => t.IsFulfilled);
             }
@@ -236,7 +236,7 @@ namespace BepInExUtilities.Behaviours
 
         public BepinExTest()
         {
-            tests = Array.Empty<BepinTestGroup>();
+
         }
     }
 }
