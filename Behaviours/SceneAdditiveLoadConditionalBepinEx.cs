@@ -10,19 +10,6 @@ using UnityEngine.SceneManagement;
 namespace BepInExUtilities.Behaviours
 {
 
-    public class SerializationProbe : MonoBehaviour, ISerializationCallbackReceiver
-    {
-        [SerializeReference]
-        public BepInExUtilities.Behaviours.P probe;
-        public string text;
-
-        public void OnBeforeSerialize() { }
-        public void OnAfterDeserialize() => Debug.Log($"deser text='{text}' probe={(probe == null ? "null" : "set")}");
-
-
-        private void Awake() { Debug.Log($"[probe-test] text='{text}' probe null={probe == null}"); Debug.Log($"json={JsonUtility.ToJson(this)}"); }
-        }
-    [Serializable] public class P : UnityEngine.Object { public string value; }
 
     [Serializable]
     [Tooltip("Extends the Scene Additional Load script to support bepinEx configs")]
@@ -32,18 +19,8 @@ namespace BepInExUtilities.Behaviours
         [SerializeField]
         public BepinExTest bepinTests;
         
-        [SerializeField] public DebugProbe probe;
-
         private void Awake()
         {
-            var f = typeof(SceneAdditiveLoadConditionalBepinEx).GetField("bepinTests",
-                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-            Debug.Log($"field={(f == null ? "MISSING" : f.FieldType.FullName)} " +
-                      $"hasSerializeField={f != null && Attribute.IsDefined(f, typeof(SerializeField))} " +
-                      $"typeSerializable={Attribute.IsDefined(typeof(BepinExTest), typeof(SerializableAttribute))} " +
-                      $"dll={typeof(BepinExTest).Assembly.Location} " +
-                      $"probe={probe == null}"); Debug.Log($"json={JsonUtility.ToJson(this)}");
-
             
         }
 
@@ -84,8 +61,6 @@ namespace BepInExUtilities.Behaviours
             return false;
         }
     }
-
-    [Serializable] public class DebugProbe { public string value; }
 
     [Serializable]
     [Tooltip("Test group on bepinex configurations")]
@@ -228,7 +203,6 @@ namespace BepInExUtilities.Behaviours
                 }
             }
         }
-
 
         [Serializable]
         public class BepinTestGroup
