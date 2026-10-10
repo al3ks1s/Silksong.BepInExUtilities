@@ -12,11 +12,11 @@ namespace BepInExUtilities.Behaviours
 
     public class SerializationProbe : MonoBehaviour
     {
-        [Serializable] public class P { public string value; }
         public P probe;
         public string text;
         private void Awake() => Debug.Log($"[probe-test] text='{text}' probe null={probe == null}");
     }
+    [Serializable] public class P { public string value; }
 
     [Serializable]
     [Tooltip("Extends the Scene Additional Load script to support bepinEx configs")]
