@@ -10,11 +10,15 @@ using UnityEngine.SceneManagement;
 namespace BepInExUtilities.Behaviours
 {
 
-    public class SerializationProbe : MonoBehaviour
+    public class SerializationProbe : MonoBehaviour, ISerializationCallbackReceiver
     {
         [SerializeField]
         public BepInExUtilities.Behaviours.P probe;
         public string text;
+
+        public void OnBeforeSerialize() { }
+        public void OnAfterDeserialize() => Debug.Log($"deser text='{text}' probe={(probe == null ? "null" : "set")}");
+
 
         private void Awake() { Debug.Log($"[probe-test] text='{text}' probe null={probe == null}"); Debug.Log($"json={JsonUtility.ToJson(this)}"); }
         }
