@@ -12,7 +12,7 @@ namespace BepInExUtilities.Behaviours
 
     public class SerializationProbe : MonoBehaviour, ISerializationCallbackReceiver
     {
-        [SerializeField]
+        [SerializeReference]
         public BepInExUtilities.Behaviours.P probe;
         public string text;
 
