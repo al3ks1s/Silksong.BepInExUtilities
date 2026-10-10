@@ -10,6 +10,15 @@ using UnityEngine.SceneManagement;
 namespace BepInExUtilities.Behaviours
 {
 
+    public class SerializationProbe : MonoBehaviour
+    {
+        [Serializable] public class P { public string value; }
+        public P probe;
+        public string text;
+        private void Awake() => Debug.Log($"[probe-test] text='{text}' probe null={probe == null}");
+    }
+
+    [Serializable]
     [Tooltip("Extends the Scene Additional Load script to support bepinEx configs")]
     public class SceneAdditiveLoadConditionalBepinEx : SceneAdditiveLoadConditional
     {
@@ -26,7 +35,8 @@ namespace BepInExUtilities.Behaviours
             Debug.Log($"field={(f == null ? "MISSING" : f.FieldType.FullName)} " +
                       $"hasSerializeField={f != null && Attribute.IsDefined(f, typeof(SerializeField))} " +
                       $"typeSerializable={Attribute.IsDefined(typeof(BepinExTest), typeof(SerializableAttribute))} " +
-                      $"dll={typeof(BepinExTest).Assembly.Location}");
+                      $"dll={typeof(BepinExTest).Assembly.Location} " +
+                      $"probe={probe == null}");
         }
 
         private new void OnEnable()
