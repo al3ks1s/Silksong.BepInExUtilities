@@ -16,15 +16,9 @@ namespace BepInExUtilities.Behaviours
         public BepInExUtilities.Behaviours.P probe;
         public string text;
 
-        public PlayerDataTest gameClass;           // game assembly, plain class (should appear)
-        public ScriptableProbe soRef;              // see below
-        [Serializable] public class Q { public int a; }
-        public Q nested;
-
         private void Awake() { Debug.Log($"[probe-test] text='{text}' probe null={probe == null}"); Debug.Log($"json={JsonUtility.ToJson(this)}"); }
         }
     [Serializable] public class P { public string value; }
-    public class ScriptableProbe : ScriptableObject { public string value; }
 
     [Serializable]
     [Tooltip("Extends the Scene Additional Load script to support bepinEx configs")]
