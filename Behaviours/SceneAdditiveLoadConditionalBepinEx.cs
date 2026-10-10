@@ -22,7 +22,7 @@ namespace BepInExUtilities.Behaviours
 
         private void Awake() { Debug.Log($"[probe-test] text='{text}' probe null={probe == null}"); Debug.Log($"json={JsonUtility.ToJson(this)}"); }
         }
-    [Serializable] public class P { public string value; }
+    [Serializable] public class P : UnityEngine.Object { public string value; }
 
     [Serializable]
     [Tooltip("Extends the Scene Additional Load script to support bepinEx configs")]
@@ -43,6 +43,8 @@ namespace BepInExUtilities.Behaviours
                       $"typeSerializable={Attribute.IsDefined(typeof(BepinExTest), typeof(SerializableAttribute))} " +
                       $"dll={typeof(BepinExTest).Assembly.Location} " +
                       $"probe={probe == null}"); Debug.Log($"json={JsonUtility.ToJson(this)}");
+
+            
         }
 
         private new void OnEnable()
