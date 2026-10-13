@@ -6,7 +6,7 @@ namespace BepInExUtilities.Actions
 {
 
     [ActionCategory("BepInEx Utilities")]
-    [Tooltip("Generic Bepin Ex configuration retrieval action, use specific typed actions for better stability")]
+    [Tooltip("Generic Bepin Ex configuration retrieval action. This is a stub, use the type specific actions.")]
     public class GetBepinExConfigValue<T> : FsmStateAction
     {
 
@@ -20,7 +20,7 @@ namespace BepInExUtilities.Actions
         [RequiredField]
         public string BepinExConfigKey;
 
-        public NamedVariable storeVariable;
+        // public NamedVariable storeVariable;
 
         protected ConfigFile config;
 
@@ -43,8 +43,8 @@ namespace BepInExUtilities.Actions
 
         public virtual void DoGetValue()
         {
-            if (config.TryGetEntry<T>(BepinExConfigSection, BepinExConfigKey, out ConfigEntry<T> value))
-                storeVariable.RawValue = value.Value;
+            if (config.TryGetEntry<T>(BepinExConfigSection, BepinExConfigKey, out ConfigEntry<T> value)) { }
+                // storeVariable.RawValue = value.Value;
         }
 
     }
