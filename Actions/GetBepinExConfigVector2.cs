@@ -8,7 +8,7 @@ namespace BepInExUtilities.Actions
 
     [ActionCategory("BepInEx Utilities")]
     [UnityEngine.Tooltip("Vector2 Bepin Ex configuration retrieval action")]
-    internal class GetBepinExConfigVector2 : GetBepinExConfigValue<Vector2>
+    public class GetBepinExConfigVector2 : GetBepinExConfigValue<Vector2>
     {
 
         public new FsmVector2 storeVariable;

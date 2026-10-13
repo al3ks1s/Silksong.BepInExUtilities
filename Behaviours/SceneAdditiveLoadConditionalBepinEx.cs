@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 namespace BepInExUtilities.Behaviours
 {
 
-
     [Serializable]
     [Tooltip("Extends the Scene Additional Load script to support bepinEx configs")]
     public class SceneAdditiveLoadConditionalBepinEx : SceneAdditiveLoadConditional
@@ -34,7 +33,7 @@ namespace BepInExUtilities.Behaviours
 
         private new void Start()
         {
-            if (LoadInSequence || sceneLoaded || !TryTestLoad() || !BepinExTests())
+            if (LoadInSequence || sceneLoaded || !TryTestLoad())
             {
                 return;
             }
@@ -51,6 +50,67 @@ namespace BepInExUtilities.Behaviours
             StartCoroutine(LoadRoutine(callEvent: true, this));
         }
 
+        private new bool TryTestLoad()
+        {
+            bool flag = !tests.IsFulfilled || !BepinExTests();
+            QuestTest[] array = questTests;
+            foreach (QuestTest questTest in array)
+            {
+                if (!questTest.IsFulfilled)
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            string entryGateName = GameManager.instance.entryGateName;
+            if (!flag && doorWhiteList.Length != 0)
+            {
+                bool flag2 = false;
+                string[] array2 = doorWhiteList;
+                for (int i = 0; i < array2.Length; i++)
+                {
+                    if (array2[i].Equals(entryGateName))
+                    {
+                        flag2 = true;
+                        break;
+                    }
+                }
+                if (!flag2)
+                {
+                    flag = true;
+                }
+            }
+            if (!flag && doorBlackList.Length != 0)
+            {
+                string[] array2 = doorBlackList;
+                for (int i = 0; i < array2.Length; i++)
+                {
+                    if (array2[i].Equals(entryGateName))
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+            if (!flag && otherLoaderBlacklist.Length != 0)
+            {
+                SceneAdditiveLoadConditional[] array3 = otherLoaderBlacklist;
+                for (int i = 0; i < array3.Length; i++)
+                {
+                    if (array3[i].TryTestLoad())
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+            if (flag)
+            {
+                loadAlt = true;
+            }
+            return !string.IsNullOrEmpty(SceneNameToLoad);
+        }
+
         private bool BepinExTests()
         {
             if (bepinTests != null)
@@ -58,7 +118,7 @@ namespace BepInExUtilities.Behaviours
                 return bepinTests.IsFulfilled;
             }
 
-            return false;
+            return true;
         }
     }
 
